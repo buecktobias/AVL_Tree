@@ -1,3 +1,4 @@
+
 public class Test {
     public static void main(String[] args) {
         AVL_Tree<Integer> avl = new AVL_Tree<>();

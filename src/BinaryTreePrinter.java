@@ -5,7 +5,7 @@ public class BinaryTreePrinter {
         if (node.getRightChild() != null) {
             toString(new StringBuilder().append(prefix).append(isTail ? "│   " : "    "), node.getRightChild(), false, sb);
         }
-        sb.append(prefix).append(isTail ? "└── " : "┌── ").append(node.getData().toString()).append("\n");
+        sb.append(prefix).append(isTail ? "└── " : "┌── ").append(node.getData().toString()).append(" ").append(node.getBalanceFactorAsString()).append("\n");
         if (node.getLeftChild() != null) {
             toString(new StringBuilder().append(prefix).append(isTail ? "    " : "│   "), node.getLeftChild(), true, sb);
         }

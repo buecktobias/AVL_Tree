@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d3163a7-c678-4514-aaa5-b9cb07d10e72" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AVLTreeTester.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Colors.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AVL-Tree/AVL_Tree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AVL-Tree/AVL_Tree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AVL-Tree/UnitTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AVL-Tree/BinaryTreePrinter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AVL-Tree/BinaryTreePrinter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AVL-Tree/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AVL-Tree/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AVLTreeTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AVLTreeTester.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AVL_Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AVL_Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BinaryTreePrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BinaryTreePrinter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UnitTests.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +28,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProjectId" id="1PVdsmwvhu66LyM0VzRF8C53KS2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -106,19 +109,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Test.java</url>
-          <line>1</line>
-          <properties class="Test" method="main">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

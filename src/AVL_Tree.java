@@ -5,7 +5,6 @@ public class AVL_Tree<E extends Comparable<E>> {
     private AVL_Tree<E> leftChild;
     private AVL_Tree<E> rightChild;
     private E data;
-    private short balanceFactor;
 
     public AVL_Tree(){
     }
@@ -38,17 +37,38 @@ public class AVL_Tree<E extends Comparable<E>> {
     public int getHeight(){
         return getHeight(0);
     }
+
+    public String getBalanceFactorAsString(){
+        int balanceFactor = this.getBalanceFactor();
+        String color = Math.abs(balanceFactor) > 1 ? Colors.ANSI_RED : Colors.ANSI_GREEN;
+        return color + balanceFactor + Colors.ANSI_RESET;
+    }
+
+    public int getBalanceFactor() {
+        int leftChildHeight = 0;
+        int rightChildHeight = 0;
+
+        if(this.getLeftChild() != null){
+            leftChildHeight = this.getLeftChild().getHeight(1);
+        }
+        if(this.getRightChild() != null){
+            rightChildHeight = this.getRightChild().getHeight(1);
+        }
+        return rightChildHeight - leftChildHeight;
+    }
+
     private int getHeight(int height){
         if(this.getLeftChild() == null && this.getRightChild() == null){
             return height;
         }
         else{
+            final int new_height = height + 1;
             if(this.getLeftChild() == null){
-                return this.getRightChild().getHeight(height + 1);
+                return this.getRightChild().getHeight(new_height);
             }else if(this.getRightChild() == null){
-                return this.getLeftChild().getHeight(height + 1);
+                return this.getLeftChild().getHeight(new_height);
             }else{
-                return Math.max(this.getLeftChild().getHeight(height + 1), this.getRightChild().getHeight(height+1));
+                return Math.max(this.getLeftChild().getHeight(new_height), this.getRightChild().getHeight(new_height));
             }
         }
     }
@@ -103,6 +123,6 @@ public class AVL_Tree<E extends Comparable<E>> {
 
     @Override
     public String toString() {
-        return this.getClass().getName() + this.traverseInOrder().toString();
+        return this.getClass().getName() + " " + this.traverseInOrder().toString();
     }
 }
