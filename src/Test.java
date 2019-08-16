@@ -6,7 +6,9 @@ public class Test {
         avl.add(2);
         avl.add(5);
         avl.add(7);
+        avl.add(8);
         System.out.println(avl);
         System.out.println(BinaryTreePrinter.print(avl));
+        System.out.println(avl.getHeight());
     }
 }

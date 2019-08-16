@@ -35,23 +35,46 @@ public class AVL_Tree<E extends Comparable<E>> {
         }
     }
 
-    public AVL_Tree<E> getLeftChild() {
+    public int getHeight(){
+        return getHeight(0);
+    }
+    private int getHeight(int height){
+        if(this.getLeftChild() == null && this.getRightChild() == null){
+            return height;
+        }
+        else{
+            if(this.getLeftChild() == null){
+                return this.getRightChild().getHeight(height + 1);
+            }else if(this.getRightChild() == null){
+                return this.getLeftChild().getHeight(height + 1);
+            }else{
+                return Math.max(this.getLeftChild().getHeight(height + 1), this.getRightChild().getHeight(height+1));
+            }
+        }
+    }
+
+    public int getSize(){
+        return this.traverseInOrder().size();
+    }
+
+
+    protected AVL_Tree<E> getLeftChild() {
         return leftChild;
     }
 
-    public void setLeftChild(AVL_Tree<E> leftChild) {
+    private void setLeftChild(AVL_Tree<E> leftChild) {
         this.leftChild = leftChild;
     }
 
-    public AVL_Tree<E> getRightChild() {
+    protected AVL_Tree<E> getRightChild() {
         return rightChild;
     }
 
-    public void setRightChild(AVL_Tree<E> rightChild) {
+    private void setRightChild(AVL_Tree<E> rightChild) {
         this.rightChild = rightChild;
     }
 
-    public E getData() {
+    protected E getData() {
         return data;
     }
 
@@ -81,9 +104,5 @@ public class AVL_Tree<E extends Comparable<E>> {
     @Override
     public String toString() {
         return this.getClass().getName() + this.traverseInOrder().toString();
-    }
-
-    public int getSize(){
-        return this.traverseInOrder().size();
     }
 }
