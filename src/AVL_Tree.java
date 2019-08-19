@@ -61,27 +61,31 @@ public class AVL_Tree<E extends Comparable<E>> {
         this.rightRightRotation();
     }
 
+    private void rotate(String kindOfRotation, AVL_Tree<E> rootOfRotation){
+        switch(kindOfRotation){
+            case "RR":
+                rootOfRotation.rightRightRotation();
+                break;
+            case "RL":
+                rootOfRotation.rightLeftRotation();
+                break;
+            case "LL":
+                rootOfRotation.leftLeftRotation();
+                break;
+            case "LR":
+                rootOfRotation.leftRightRotation();
+                break;
+        }
+    }
+
 
     private void testBalanceFactors(){
         if(this.getParent() != null && this.getParent().getParent() != null && !this.getParent().getParent().isBalanced()){
             String kindOfRotation = this.getParent().leftOrRightChild() + this.leftOrRightChild();
             AVL_Tree<E> rootOfRotation = this.getParent().getParent();
             System.out.println(Colors.ANSI_RED +  "rotate "  + kindOfRotation + Colors.ANSI_RESET);
-
-            switch(kindOfRotation){
-                case "RR":
-                    rootOfRotation.rightRightRotation();
-                    break;
-                case "RL":
-                    rootOfRotation.rightLeftRotation();
-                    break;
-                case "LL":
-                    rootOfRotation.leftLeftRotation();
-                    break;
-                case "LR":
-                    rootOfRotation.leftRightRotation();
-                    break;
-            }
+            // TODO check parents
+            rotate(kindOfRotation, rootOfRotation);
         }
     }
 
