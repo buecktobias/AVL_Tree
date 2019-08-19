@@ -13,7 +13,7 @@ public class AVLTreeTester{
     private AVL_Tree<Integer> avl_tree = new AVL_Tree<>();
     private Random r = new Random();
     @Test
-    void testSize(){
+    void testSize() throws Exception{
         AVL_Tree<Integer> avl_tree = new AVL_Tree<>();
         final int size = 10;
         for(int i = 0; i < size;i++){
@@ -32,15 +32,15 @@ public class AVLTreeTester{
 
         assertEquals(avl_tree.getRoot().getElementsInOrder(), Arrays.asList(3, 4, 8));
     }
-    void addElementRandomElementToAVLTree(AVL_Tree<Integer> avl_tree){
+    void addElementRandomElementToAVLTree(AVL_Tree<Integer> avl_tree)throws Exception{
         avl_tree.addElement(this.r.nextInt());
     }
 
 
     @Test
-    void testRotation(){
+    void testRotation() throws Exception{
         AVL_Tree<Integer> avlTree = new AVL_Tree<>();
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 20; i++){
             this.addElementRandomElementToAVLTree(avlTree);
         }
         List<AVL_Tree<Integer>> allSubTrees = avlTree.traverseInOrder();

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AVL_Tree<E extends Comparable<E>> {
     private AVL_Tree<E> leftChild;
@@ -24,12 +25,27 @@ public class AVL_Tree<E extends Comparable<E>> {
         }
         return root;
     }
+    private void setParentsChild(AVL_Tree<E> avlTree){
+        if(this.getParent() != null){
+            try {
+                if (this.isLeftChild()) {
+                    this.getParent().setLeftChild(avlTree);
+                }else{
+                    this.getParent().setRightChild(avlTree);
+                }
+            }catch(Exception e){
+                ;
+            }
+        }
+    }
 
     private void leftLeftRotation(){
+        AVL_Tree<E> oldParent = this.getParent();
         AVL_Tree<E> B = this.getLeftChild();
         this.setLeftChild(B.getRightChild());
+        this.setParentsChild(B);
         B.setRightChild(this);
-        B.setParent(null);
+        B.setParent(oldParent);
     }
 
     private void leftRightRotation(){
@@ -44,10 +60,12 @@ public class AVL_Tree<E extends Comparable<E>> {
     }
 
     private void rightRightRotation(){
+        AVL_Tree<E> oldParent = this.getParent();
         AVL_Tree<E> B = this.getRightChild();
         this.setRightChild(B.getLeftChild());
+        this.setParentsChild(this);
         B.setLeftChild(this);
-        B.setParent(null);
+        B.setParent(oldParent);
     }
 
     private void rightLeftRotation(){
@@ -78,32 +96,45 @@ public class AVL_Tree<E extends Comparable<E>> {
         }
     }
 
+    private void testBalanceFactors() throws Exception{
+        this.testBalanceFactors(new LinkedList<Character>());
+    }
+    private void testBalanceFactors(LinkedList<Character> lastTwoDirectionsCameFrom) throws Exception{
 
-    private void testBalanceFactors(){
-        if(this.getParent() != null && this.getParent().getParent() != null && !this.getParent().getParent().isBalanced()){
-            String kindOfRotation = this.getParent().leftOrRightChild() + this.leftOrRightChild();
-            AVL_Tree<E> rootOfRotation = this.getParent().getParent();
-            System.out.println(Colors.ANSI_RED +  "rotate "  + kindOfRotation + Colors.ANSI_RESET);
-            // TODO check parents
-            rotate(kindOfRotation, rootOfRotation);
+        if(!this.isBalanced()){
+            if(lastTwoDirectionsCameFrom.size() == 2){
+                String kindOfRotation = lastTwoDirectionsCameFrom.stream()  			// Stream<Character>
+                        .map(String::valueOf)   // Stream<String>
+                        .collect(Collectors.joining());
+                System.out.println(kindOfRotation);
+                this.rotate(kindOfRotation,this);
+            }
         }
+        if(lastTwoDirectionsCameFrom.size() >= 2){
+            lastTwoDirectionsCameFrom.remove(1);
+        }
+        if(this.getParent() == null){
+            return;
+        }
+        lastTwoDirectionsCameFrom.add(0,this.leftOrRightChild());
+        this.getParent().testBalanceFactors(lastTwoDirectionsCameFrom);
     }
 
-    private String leftOrRightChild(){
-        return this.isLeftChild() ? "L" : "R";
+    private Character leftOrRightChild() throws Exception{
+        return this.isLeftChild() ? 'L' : 'R';
     }
 
-    private boolean isLeftChild(){
+    private boolean isLeftChild() throws Exception{
         if(this.getParent() == null) {
-            return false;
+            throw new Exception("This root is not a Child at all!");
         }else{
             return this.getParent().getLeftChild() == this;
         }
     }
-    public void addElement(E data){
+    public void addElement(E data) throws Exception{
         this.getRoot().add(data);
     }
-    private void add(E data){
+    private void add(E data) throws Exception{
         if(this.data == null){
             this.data = data;
             this.testBalanceFactors();
