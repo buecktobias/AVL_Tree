@@ -14,11 +14,12 @@ public class AVLTreeTester{
     private Random r = new Random();
     @Test
     void testSize(){
+        AVL_Tree<Integer> avl_tree = new AVL_Tree<>();
         final int size = 10;
         for(int i = 0; i < size;i++){
             avl_tree.addElement(i);
         }
-        assertEquals(size, avl_tree.getSize());
+        assertEquals(size, avl_tree.getRoot().getSize());
     }
 
     @Test
@@ -29,7 +30,7 @@ public class AVLTreeTester{
         avl_tree.addElement(4);
         avl_tree.addElement(3);
 
-        assertEquals(avl_tree.getElementsInOrder(), Arrays.asList(3, 4, 8));
+        assertEquals(avl_tree.getRoot().getElementsInOrder(), Arrays.asList(3, 4, 8));
     }
     void addElementRandomElementToAVLTree(AVL_Tree<Integer> avl_tree){
         avl_tree.addElement(this.r.nextInt());

@@ -35,9 +35,11 @@ public class AVL_Tree<E extends Comparable<E>> {
     private void leftRightRotation(){
         AVL_Tree<E> B = this.getLeftChild();
         AVL_Tree<E> C = B.getRightChild();
+
         B.setRightChild(C.getLeftChild());
         this.setLeftChild(C);
         C.setLeftChild(B);
+
         this.leftLeftRotation();
     }
 
@@ -49,28 +51,35 @@ public class AVL_Tree<E extends Comparable<E>> {
     }
 
     private void rightLeftRotation(){
-        //TODO implement right left rotation
+        AVL_Tree<E> B = this.getRightChild();
+        AVL_Tree<E> C = B.getLeftChild();
+
+        B.setLeftChild(C.getRightChild());
+        C.setRightChild(B);
+        this.setRightChild(C);
+
+        this.rightRightRotation();
     }
 
 
     private void testBalanceFactors(){
         if(this.getParent() != null && this.getParent().getParent() != null && !this.getParent().getParent().isBalanced()){
             String kindOfRotation = this.getParent().leftOrRightChild() + this.leftOrRightChild();
-            AVL_Tree<E> rootTree = this.getParent().getParent(); // tree, where the rotation is taking place.
+            AVL_Tree<E> rootOfRotation = this.getParent().getParent();
             System.out.println(Colors.ANSI_RED +  "rotate "  + kindOfRotation + Colors.ANSI_RESET);
 
             switch(kindOfRotation){
                 case "RR":
-                    rootTree.rightRightRotation();
+                    rootOfRotation.rightRightRotation();
                     break;
                 case "RL":
-                    rootTree.rightLeftRotation();
+                    rootOfRotation.rightLeftRotation();
                     break;
                 case "LL":
-                    rootTree.leftLeftRotation();
+                    rootOfRotation.leftLeftRotation();
                     break;
                 case "LR":
-                    rootTree.leftRightRotation();
+                    rootOfRotation.leftRightRotation();
                     break;
             }
         }
@@ -109,7 +118,8 @@ public class AVL_Tree<E extends Comparable<E>> {
             }else{
                 ;
                 // no duplicates!!
-                // TODO save amount of element for each node/tree
+                // TODO save amount of element for each node/tree    private void testBalanceFactors(){
+
             }
         }
     }
